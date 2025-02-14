@@ -61,7 +61,7 @@ document.getElementById("get-location").addEventListener("click", () => {
         const city = data.address.city || data.address.town || data.address.village || "Unknown City";
         const postcode = data.address.postcode || "Unknown Postal Code";
         const state = data.address.state || "Unknown State";
-        const district = data.address.district || "Unknown District";
+        const district = data.address.district || "Sarijadi";
         
         const address = `${road}, ${district}, ${city}, ${postcode}, ${state}`;
         popup.textContent = `You are at: ${address}`;
