@@ -57,13 +57,20 @@ document.getElementById("get-location").addEventListener("click", () => {
       const data = await response.json();
       
       if (data.address) {
-        const address = `${data.address.road || "Unknown Road"}, ${data.address.city || data.address.town || "Unknown City"}, ${data.address.postcode || "Unknown Postal Code"}`;
+        const road = data.address.road || data.address.suburb || "Unknown Road";
+        const city = data.address.city || data.address.town || data.address.village || "Unknown City";
+        const postcode = data.address.postcode || "Unknown Postal Code";
+        const state = data.address.state || "Unknown State";
+        const district = data.address.district || "Unknown District";
+        
+        const address = `${road}, ${district}, ${city}, ${postcode}, ${state}`;
         popup.textContent = `You are at: ${address}`;
         overlay.setPosition(fromLonLat(coords));
       } else {
         popup.textContent = "Address not found.";
         overlay.setPosition(fromLonLat(coords));
       }
+      
     });
   } else {
     alert("Geolocation is not supported by your browser.");
